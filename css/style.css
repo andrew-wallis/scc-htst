@@ -35,7 +35,7 @@ strong {
   padding: 0 1rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 68.75rem) {
   .page--wrapper {
     padding: 0;
     max-width: 68.75rem;
@@ -173,6 +173,60 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.field-checkbox {
+  margin-bottom: 1.125rem;
+}
+
+.field-checkbox > input[type=checkbox] {
+  display: none;
+}
+
+.field-checkbox > label {
+  position: relative;
+  display: block;
+  padding: 1.5rem 1.5rem 1.5rem 5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-negative);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.field-checkbox > label::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1.125rem);
+  left: 1.1875rem;
+  display: block;
+  height: 2.25rem;
+  width: 2.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-negative);
+}
+
+.field-checkbox > input:checked + label {
+  background-color: var(--color-success);
+  border: 1px solid #66BDAC;
+  color: var(--color-negative);
+}
+
+.field-checkbox > input:checked + label::before {
+  border: 1px solid #66BDAC;
+}
+
+.field-checkbox > input:checked + label::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1.125rem);
+  left: 1.1875rem;
+  display: block;
+  height: 2.25rem;
+  width: 2.25rem;
+  background-image: url(../assets/check.svg);
+  z-index: 10;
+}
+
 .field-date {
   display: flex;
 }
@@ -190,6 +244,99 @@ input[type=number] {
 .fieldset.invalid {
   padding-left: 1rem;
   border-left: 6px solid var(--color-error);
+}
+
+.fieldset--legend {
+  margin-bottom: 1.875rem;
+  font-weight: 600;
+}
+
+.help-box {
+  padding: 1.125rem;
+  margin-bottom: 2.5rem;
+  background-color: #F8F2C8;
+  border-radius: 4px;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.progress-bar--track {
+  z-index: 9;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0%;
+  left: 0;
+  top: 50%;
+  height: 1.5px;
+  background-color: var(--color-success);
+}
+
+.progress-bar:after {
+  z-index: 8;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--color-border);
+}
+
+.progress-bar > li {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 1.875rem;
+  height: 1.875rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-negative);
+  border: 1.5px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1.875rem;
+  color: var(--color-element);
+  font-weight: 600;
+}
+
+.progress-bar > .progress-bar--complete {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.progress-bar > .progress-bar--complete::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 1.875rem;
+  height: 1.875rem;
+  background-image: url(../assets/progress-complete.svg);
+}
+
+.progress-bar > .progress-bar--active {
+  border-color: var(--color-success);
+  color: var(--color-negative);
+}
+
+.progress-bar > .progress-bar--active::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 1.875rem;
+  height: 1.875rem;
+  background-image: url(../assets/progress-edit.svg);
 }
 
 /* Typography */
@@ -218,6 +365,16 @@ input[type=number] {
 .body-text p:last-child,
 .body-text ul:last-child {
   margin-bottom: 0;
+}
+
+.body-text-small {
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 48rem) {
+  .body-text {
+    font-size: 0.9375rem;
+  }
 }
 
 .heading {
@@ -252,4 +409,10 @@ input[type=number] {
   color: var(--color-error);
   font-weight: 600;
   margin-top: 0.5rem;
+}
+
+/* Utilities */
+
+.hidden {
+  display: none;
 }

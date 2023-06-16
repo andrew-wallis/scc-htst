@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home To School Transport</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="body">
+
+  <header class="header">
+    <div class="page--wrapper">
+      <a href="https://www.surreycc.gov.uk">
+        <img src="assets/scc-logo.svg" alt="Surrey County Council">
+      </a>      
+    </div>
+  </header>
+
+  <main class="page--wrapper">
+
+    <form class="form-wrapper">
+      <ol class="progress-bar">
+        <li class="progress-bar--complete">1</li>
+        <li class="progress-bar--complete">2</li>
+        <li class="progress-bar--active">3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <div class="progress-bar--track" style="width: 40%"></div>
+      </ol>
+      <div class="body-text">
+        <h1 class="heading heading--xl">Did you apply for your child’s school place on faith grounds?</h1>
+        <fieldset class="fieldset">      
+        </fieldset>   
+      </div>
+      <div class="button-group">
+        <button id="page-element-previous" data-src="step-2.html" class="button button--previous button--secondary">Previous</button>
+        <button id="page-element-next" data-src="step-4.html" class="button button--success button--next">Next</button>
+      </div>
+    </form>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+  <script src="js/getParams.js"></script>
+  <script src="js/dateCheck.js"></script>
+  
+
+  <script>
+    $(document).ready(function(){
+      var inputParams = getParams(window.location.href);
+      var outputParams = inputParams;
+      console.log(outputParams);
+      
+      $( ".button" ).click(function(e){
+        e.preventDefault();
+        outputQueryString = $.param(outputParams);
+        window.location.href = $(this).attr('data-src') + "?" + outputQueryString;
+      });
+    });
+  </script>
+</body>
+</html>

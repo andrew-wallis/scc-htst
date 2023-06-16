@@ -1,3 +1,41 @@
+function dateCheck(date, elem) {
+  var noCheckDate;
+  elem.find( ".field-date > div > .field-date--elem" ).each(function() {
+    if ($(this).val().length < $(this).attr('maxLength')) {
+      noCheckDate = true;
+    }
+  });
+
+  if(noCheckDate == true) {
+    elem.removeClass('invalid');
+    elem.find('.error-message').remove();
+    return false;
+  } else {
+    var dateToTest = date.dobMonth + '/' + date.dobDate + '/' + date.dobYear;
+    if(isDate(dateToTest)) {
+      var dateToTestObj = new Date(dateToTest);
+      var now = new Date();
+      if (dateToTestObj > now) {
+        elem.addClass('invalid');
+        $('<div>', {
+            class: 'error-message',
+            text: 'Please enter a date in the past'
+        }).appendTo(elem);
+        return false;
+      } else {
+        return dateToTestObj.toISOString();
+      }
+    } else {
+      elem.addClass('invalid');
+      $('<div>', {
+          class: 'error-message',
+          text: 'Please enter a valid date'
+      }).appendTo(elem);
+      return false;
+    };
+  }
+};
+
 function isDate(testDate) { 
   var objDate,  // date object initialized from the testDate string 
       mSeconds, // testDate in milliseconds 
