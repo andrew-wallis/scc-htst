@@ -29,9 +29,18 @@ strong {
 }
 
 .page--wrapper {
-  max-width: 68.75rem;
-  margin: 0px auto;
+  padding: 0 1rem;
 }
+
+@media (min-width: 48rem) {
+  .page--wrapper {
+    padding: 0;
+    max-width: 68.75rem;
+    margin: 0px auto;
+  }
+}
+
+
 
 .header {
   background-color: var(--color-negative);
@@ -47,21 +56,6 @@ strong {
 }
 
 /* Modules */
-
-.body-text {
-  font-size: 17px;
-  line-height: 1.44;
-}
-
-.body-text p {
-  margin-bottom: 1.25rem;
-}
-
-.body-text ul {
-  list-style-type: disc;
-  margin-bottom: 1.25rem;
-  padding-left: 1.25rem;
-}
 
 .alert-box {
   position: relative;
@@ -126,6 +120,27 @@ strong {
 
 /* Typography */
 
+.body-text {
+  font-size: 0.9375rem;
+  line-height: 1.44;
+}
+
+@media (min-width: 48rem) {
+  .body-text {
+    font-size: 1.0625rem;
+  }
+}
+
+.body-text p {
+  margin-bottom: 1.25rem;
+}
+
+.body-text ul {
+  list-style-type: disc;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+}
+
 .heading {
   font-family: 'DM Sans';
   font-style: normal;
@@ -135,7 +150,13 @@ strong {
 
 .heading--xl {
   margin-bottom: 2.5rem;
-  font-size: 1.875rem;
+  font-size: 1.65625rem;
   line-height: 1.15;
   letter-spacing: -0.01em;
+}
+
+@media (min-width: 48rem) {
+  .heading--xl {
+    font-size: 1.875rem;
+  }
 }
