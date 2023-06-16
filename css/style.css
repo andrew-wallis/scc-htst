@@ -37,6 +37,7 @@ strong {
   background-color: var(--color-negative);
   box-shadow: var(--shadow-header);
   margin-bottom: 3.75rem;
+  padding: 0.625rem 0;
 }
 
 .fieldset {
