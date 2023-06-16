@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home To School Transport</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="body">
+
+  <header class="header">
+    <div class="page--wrapper">
+      <a href="https://www.surreycc.gov.uk">
+        <img src="assets/scc-logo.svg" alt="Surrey County Council">
+      </a>      
+    </div>
+  </header>
+
+  <main class="page--wrapper">
+
+    <form class="form-wrapper">
+      <div class="body-text">
+        <h1 class="heading heading--xl">What is your child’s date of birth?</h1>
+        <fieldset id="dob" class="fieldset">
+          <div class="field-date">
+            <div>
+              <label class="field-date--label" for="field-date--date">Day</label>
+              <input id="dob--date" data-var="dobDate" type="number" maxlength="2" class="field field-date--elem field-date--day" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+            <div>
+              <label class="field-date--label" for="field-date--month">Month</label>
+              <input id="dob--month" data-var="dobMonth" type="number" maxlength="2" class="field field-date--elem field-date--month" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+            <div>
+              <label class="field-date--label" for="field-date--year">Year</label>
+              <input id="dob--year" data-var="dobYear" type="number" maxlength="4" class="field field-date--elem field-date--year" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+          </div>
+        </fieldset>
+      <div class="button-group">
+        <button id="page-element-previous" data-src="index.html" class="button button--previous button--secondary">Previous</button>
+        <button id="page-element-next" data-src="step-2.html" class="button button--success button--next">Start</button>
+      </div>
+    </form>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+  
+  <script src="js/is-date.js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      var dob = [];
+
+      $( ".field-date--elem" ).on('input', function() {
+        dob[$(this).attr('data-var')] = $(this).val();
+        dateCheck(dob, $("#dob") );
+      });
+
+      $( "#page-element-previous" ).click(function(e){
+        e.preventDefault();
+        window.location.href = $(this).attr('data-src');
+      });
+      $( "#page-element-next" ).click(function(e){
+        e.preventDefault();
+        window.location.href = $(this).attr('data-src');
+      });
+
+      function dateCheck(date, elem) {
+        var noCheckDate;
+        elem.find( ".field-date > div > .field-date--elem" ).each(function() {
+          if ($(this).val().length < $(this).attr('maxLength')) {
+            noCheckDate = true;
+          }
+        });
+
+        if(noCheckDate == true) {
+          elem.removeClass('invalid');
+          elem.find('.error-message').remove();
+        } else {
+          var dateToTest = date.dobMonth + '/' + date.dobDate + '/' + date.dobYear;
+          console.log(dateToTest)
+          if(isDate(dateToTest)) {
+            var dateToTestObj = new Date(dateToTest);
+            var now = new Date();
+            if (dateToTestObj > now) {
+              elem.addClass('invalid');
+              $('<div>', {
+                  class: 'error-message',
+                  text: 'Please enter a date in the past'
+              }).appendTo(elem);
+            } else {
+              console.log('Date is valid!');
+            }
+          } else {
+            elem.addClass('invalid');
+            $('<div>', {
+                class: 'error-message',
+                text: 'Please enter a valid date'
+            }).appendTo(elem);
+          };
+        }
+      };
+    });
+  </script>
+</body>
+</html>

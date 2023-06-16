@@ -1,16 +1,19 @@
 :root {
-  --color-page-bg: hsl(200, 23%, 97%);
+  --color-page-bg: #F7F9FA;
   --color-text: #0C1123;
+  --color-secondary: #4B5D67;
+  --color-element: #898D91;
   --color-border: #BBBFC6;
   --color-negative: #fff;
 
   --color-success: #069074;
   --color-sucess--active: #00755E;
-  --color-link: #146AEA;   
+  --color-link: #146AEA;
+  --color-error: #D92745;
 
   --shadow-header: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-button: inset 0px -2px 0px rgba(0, 0, 0, 0.3);
-  --shadow-button--active: inset 0px 2px 0px rgba(0, 0, 0, 0.3);
+  --shadow-button: inset 0px -2px 0px rgba(187, 191, 198, 0.2);
+  --shadow-button-success: inset 0px -2px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* Base */
@@ -40,8 +43,6 @@ strong {
   }
 }
 
-
-
 .header {
   background-color: var(--color-negative);
   box-shadow: var(--shadow-header);
@@ -49,7 +50,7 @@ strong {
   padding: 0.625rem 0;
 }
 
-.fieldset {
+.form-wrapper {
   max-width: 37.875rem;
   margin: 0px auto;
   margin-bottom: 12rem;
@@ -83,13 +84,14 @@ strong {
 
 .button {
   position: relative;
-  margin-top: 4.375rem;
+  display: inline-block;
   padding: 0.85rem 1.3125rem 0.85rem 1.3125rem;
   border-radius: 6px;
   font-weight: 600;
   font-size: 17px;
   line-height: 20px;
-  color: var(--color-negative);
+  border: 1px solid var(--color-element);
+  box-shadow: var(--shadow-button);
 }
 
 .button--next {
@@ -108,14 +110,86 @@ strong {
   height: 1.125rem;
 }
 
+.button--previous {
+  padding: 0.85rem 1.3125rem 0.85rem 3rem;
+}
+
+.button--previous::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: calc(50% - 0.5625rem);
+  background-image: url(../assets/arrow-left.svg);
+  background-size: contain;
+  display: block;
+  width: 0.75rem;
+  height: 1.125rem;
+}
+
 .button--success {
   background-color: var(--color-success);
-  box-shadow: var(--shadow-button);
+  box-shadow: var(--shadow-button-success);
   transition: background-color .3s ease-out;
+  color: var(--color-negative);
+  border: 0;
 }
 
 .button--success:active {
   background-color: var(--color-sucess--active);
+}
+
+.button--secondary {
+  color: var(--color-secondary);
+  transition: background-color .3s ease-out;
+}
+
+.button--secondary:active {
+  background-color: var(--color-page-bg);
+}
+
+.button-group {
+  margin-top: 4.375rem;
+}
+
+.button-group > .button {
+  margin-right: 1rem;
+}
+
+input[type=text],
+input[type=number] {
+  padding: 0.75rem;
+  background-color: var(--color-negative);
+  border: 1px solid var(--color-element);
+  border-radius: 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.field-date {
+  display: flex;
+}
+
+.field-date--day,
+.field-date--month {
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+.field-date--year {
+  width: 8rem;
+}
+
+.fieldset.invalid {
+  padding-left: 1rem;
+  border-left: 6px solid var(--color-error);
 }
 
 /* Typography */
@@ -141,6 +215,11 @@ strong {
   padding-left: 1.25rem;
 }
 
+.body-text p:last-child,
+.body-text ul:last-child {
+  margin-bottom: 0;
+}
+
 .heading {
   font-family: 'DM Sans';
   font-style: normal;
@@ -159,4 +238,18 @@ strong {
   .heading--xl {
     font-size: 1.875rem;
   }
+}
+
+.field-date--label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-weight: 600;
+  margin-top: 0.5rem;
 }
